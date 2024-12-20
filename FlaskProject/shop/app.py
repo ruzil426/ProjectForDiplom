@@ -25,6 +25,19 @@ def add():
         return redirect('/')
     return render_template('add.html')
 
+@app.route('/edit/<int:id>', methods=['GET', 'POST'])
+def edit_product(id):
+    product = Shop.query.get(id)
+    if request.method == 'POST':
+        product.name = request.form['name']
+        product.description = request.form['description']
+        product.weight = float(request.form['weight'])
+        product.quantity = request.form['quantity']
+        product.price = request.form['price']
+        db.session.commit()
+        return redirect('/')
+    return render_template('edit.html', product=product)
+
 @app.route('/delete/<int:id>', methods=['POST'])
 def delete_product(id):
     product = Shop.query.get(id)

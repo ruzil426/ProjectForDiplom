@@ -23,6 +23,7 @@
                         <td>{{ product.quantity }}</td>
                         <td>{{ product.price }}</td>
                         <td>
+                            <a href="{{ url_for('edit_product', id=product.id) }}" class="btn btn-sm btn-primary mx-1">Редактировать</a>
                             <form method="post" action="{{ url_for('delete_product', id=product.id) }}" style="display: inline">
                                 <button type="submit" class="btn btn-sm btn-primary mx-1">Удалить</button>
                             </form>
